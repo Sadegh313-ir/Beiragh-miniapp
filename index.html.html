@@ -1,0 +1,1462 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>رسانه هنری بیرق</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <style>
+    :root{
+      --bg: #07111f;
+      --bg-2: #0b1b31;
+      --bg-3: #102847;
+      --card: rgba(255,255,255,0.05);
+      --card-2: rgba(255,255,255,0.08);
+      --line: rgba(255,255,255,0.09);
+      --text: #eef4ff;
+      --muted: #aab8cf;
+      --accent: #f7b500;
+      --accent-2: #7bc3ff;
+      --success: #28d17c;
+      --danger: #ff6b6b;
+      --shadow: 0 16px 44px rgba(0,0,0,.28);
+      --radius: 22px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: "Vazirmatn", sans-serif;
+      background:
+        radial-gradient(circle at top right, rgba(123,195,255,0.12), transparent 28%),
+        radial-gradient(circle at left center, rgba(247,181,0,0.08), transparent 22%),
+        linear-gradient(180deg, var(--bg), #050b14 78%);
+      color: var(--text);
+      line-height: 1.9;
+    }
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+    button, input { font: inherit; }
+
+    .container {
+      width: min(1180px, calc(100% - 32px));
+      margin: 0 auto;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      backdrop-filter: blur(18px);
+      background: rgba(7,17,31,.86);
+      border-bottom: 1px solid rgba(255,255,255,.06);
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 14px 0;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 0;
+      font-weight: 900;
+    }
+
+    .brand-mark {
+      width: 46px;
+      height: 46px;
+      border-radius: 15px;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(145deg, #ffd86a, var(--accent));
+      color: #1d2638;
+      box-shadow: 0 12px 30px rgba(247,181,0,.25);
+      flex: none;
+    }
+
+    .brand-text {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.4;
+    }
+
+    .brand-text span:first-child {
+      font-size: 1.02rem;
+      font-weight: 900;
+    }
+
+    .brand-text span:last-child {
+      font-size: .82rem;
+      color: var(--muted);
+      font-weight: 500;
+    }
+
+    .menu {
+      display: flex;
+      align-items: center;
+      gap: 22px;
+      color: #dbe6f8;
+      font-weight: 500;
+      flex-wrap: wrap;
+    }
+
+    .menu a {
+      opacity: .92;
+      transition: .2s ease;
+      position: relative;
+    }
+
+    .menu a:hover {
+      opacity: 1;
+      color: #fff;
+    }
+
+    .menu a::after {
+      content: "";
+      position: absolute;
+      inset-inline: 0;
+      bottom: -7px;
+      height: 2px;
+      background: linear-gradient(90deg, var(--accent), var(--accent-2));
+      transform: scaleX(0);
+      transform-origin: center;
+      transition: .22s ease;
+      border-radius: 99px;
+    }
+
+    .menu a:hover::after {
+      transform: scaleX(1);
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      border: 0;
+      outline: 0;
+      cursor: pointer;
+      border-radius: 14px;
+      padding: 12px 16px;
+      transition: .2s ease;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .btn:hover { transform: translateY(-1px); }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--accent), #ffc93e);
+      color: #1a2233;
+      box-shadow: 0 12px 30px rgba(247,181,0,.22);
+    }
+
+    .btn-secondary {
+      background: rgba(255,255,255,.05);
+      color: #fff;
+      border: 1px solid rgba(255,255,255,.08);
+    }
+
+    .btn-ghost {
+      background: transparent;
+      color: #fff;
+      border: 1px solid rgba(255,255,255,.10);
+    }
+
+    .icon-btn {
+      padding-inline: 14px;
+    }
+
+    .user-chip {
+      display: none;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.08);
+      background: rgba(255,255,255,.04);
+    }
+
+    .user-avatar {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      background: linear-gradient(145deg, #2a4270, #153153);
+      display: grid;
+      place-items: center;
+      color: #dce8ff;
+      font-size: .88rem;
+      flex: none;
+    }
+
+    .user-name {
+      font-size: .92rem;
+      color: #f3f7ff;
+      font-weight: 700;
+      max-width: 140px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .cart-btn {
+      position: relative;
+    }
+
+    .cart-count {
+      position: absolute;
+      top: -7px;
+      inset-inline-end: -7px;
+      min-width: 22px;
+      height: 22px;
+      padding: 0 6px;
+      border-radius: 999px;
+      background: var(--danger);
+      color: #fff;
+      display: grid;
+      place-items: center;
+      font-size: .75rem;
+      font-weight: 800;
+      box-shadow: 0 10px 18px rgba(255,107,107,.2);
+    }
+
+    .hero {
+      padding: 58px 0 28px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.15fr .85fr;
+      gap: 24px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: rgba(123,195,255,.10);
+      color: #d5ecff;
+      border: 1px solid rgba(123,195,255,.16);
+      font-size: .92rem;
+      margin-bottom: 16px;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.1rem, 5vw, 4.25rem);
+      line-height: 1.26;
+      margin: 0 0 16px;
+      letter-spacing: -.02em;
+    }
+
+    .hero h1 span {
+      color: var(--accent);
+    }
+
+    .hero p {
+      color: var(--muted);
+      margin: 0;
+      font-size: 1.05rem;
+      max-width: 62ch;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 26px;
+    }
+
+    .hero-card,
+    .card,
+    .product,
+    .panel {
+      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
+      border: 1px solid rgba(255,255,255,.08);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+
+    .hero-card {
+      padding: 24px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-card::before {
+      content: "";
+      position: absolute;
+      width: 260px;
+      height: 260px;
+      left: -110px;
+      top: -110px;
+      background: radial-gradient(circle, rgba(247,181,0,.16), transparent 62%);
+      pointer-events: none;
+    }
+
+    .hero-card h3 {
+      margin: 0 0 14px;
+      font-size: 1.3rem;
+    }
+
+    .hero-card ul {
+      list-style: none;
+      padding: 0;
+      margin: 18px 0 0;
+      display: grid;
+      gap: 12px;
+    }
+
+    .hero-card li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      color: var(--muted);
+    }
+
+    .hero-card li i {
+      color: var(--success);
+      margin-top: 5px;
+    }
+
+    .hero-badges {
+      display: grid;
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .hero-badge {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 14px;
+      border-radius: 16px;
+      background: rgba(255,255,255,.04);
+      border: 1px solid rgba(255,255,255,.06);
+      color: #eff6ff;
+    }
+
+    .hero-badge i {
+      color: var(--accent);
+      width: 20px;
+      text-align: center;
+    }
+
+    section {
+      padding: 64px 0;
+    }
+
+    .section-title {
+      margin-bottom: 24px;
+    }
+
+    .section-title h2 {
+      margin: 0 0 8px;
+      font-size: clamp(1.5rem, 3vw, 2.3rem);
+      line-height: 1.35;
+    }
+
+    .section-title p {
+      margin: 0;
+      color: var(--muted);
+      max-width: 70ch;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .card {
+      padding: 22px;
+    }
+
+    .card i {
+      width: 54px;
+      height: 54px;
+      border-radius: 18px;
+      display: grid;
+      place-items: center;
+      background: rgba(247,181,0,.12);
+      color: var(--accent);
+      margin-bottom: 16px;
+      font-size: 1.2rem;
+    }
+
+    .card h3 {
+      margin: 0 0 10px;
+      font-size: 1.15rem;
+    }
+
+    .card p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .products {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .product {
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      min-height: 100%;
+    }
+
+    .product-image {
+      height: 230px;
+      position: relative;
+      background: linear-gradient(135deg, #0d2140, #132d51);
+      overflow: hidden;
+    }
+
+    .product-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .product-placeholder {
+      position: absolute;
+      inset: 0;
+      display: grid;
+      place-items: center;
+      text-align: center;
+      padding: 18px;
+      color: #fff;
+      font-weight: 800;
+      font-size: 1.35rem;
+      background:
+        radial-gradient(circle at top right, rgba(247,181,0,.22), transparent 24%),
+        radial-gradient(circle at left bottom, rgba(123,195,255,.16), transparent 26%),
+        linear-gradient(135deg, #0d2140, #142f54 74%);
+    }
+
+    .product-body {
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      flex: 1;
+    }
+
+    .product h3 {
+      margin: 0;
+      font-size: 1.15rem;
+    }
+
+    .product p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .price {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .price .current {
+      font-size: 1.25rem;
+      font-weight: 900;
+      color: #fff;
+    }
+
+    .price .old {
+      color: #92a3be;
+      text-decoration: line-through;
+      font-size: .95rem;
+    }
+
+    .product-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .tag {
+      padding: 6px 10px;
+      border-radius: 999px;
+      font-size: .8rem;
+      background: rgba(123,195,255,.10);
+      color: #dbeeff;
+      border: 1px solid rgba(123,195,255,.12);
+    }
+
+    .tag.sale {
+      background: rgba(247,181,0,.12);
+      color: #ffe29a;
+      border-color: rgba(247,181,0,.16);
+    }
+
+    .product-actions {
+      display: flex;
+      gap: 10px;
+      margin-top: auto;
+      flex-wrap: wrap;
+    }
+
+    .cta {
+      padding: 28px;
+      border-radius: 28px;
+      background:
+        radial-gradient(circle at top right, rgba(247,181,0,.12), transparent 26%),
+        linear-gradient(135deg, rgba(16,40,71,.92), rgba(9,22,40,.92));
+      border: 1px solid rgba(255,255,255,.08);
+      box-shadow: var(--shadow);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+
+    .cta h2 {
+      margin: 0 0 8px;
+      font-size: clamp(1.4rem, 3vw, 2.1rem);
+    }
+
+    .cta p {
+      margin: 0;
+      color: var(--muted);
+      max-width: 60ch;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+      align-items: start;
+    }
+
+    .contact-box {
+      padding: 22px;
+    }
+
+    .contact-list {
+      display: grid;
+      gap: 12px;
+      margin-top: 16px;
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 14px;
+      border-radius: 16px;
+      background: rgba(255,255,255,.04);
+      border: 1px solid rgba(255,255,255,.06);
+      color: #eaf1ff;
+    }
+
+    .contact-item i {
+      color: var(--accent);
+      width: 22px;
+      text-align: center;
+    }
+
+    footer {
+      padding: 26px 0 46px;
+      color: var(--muted);
+      border-top: 1px solid rgba(255,255,255,.08);
+    }
+
+    .footer-grid {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .toast {
+      position: fixed;
+      left: 50%;
+      bottom: 22px;
+      transform: translateX(-50%) translateY(24px);
+      opacity: 0;
+      pointer-events: none;
+      transition: .22s ease;
+      background: #0e223d;
+      color: #fff;
+      border: 1px solid rgba(255,255,255,.1);
+      padding: 12px 18px;
+      border-radius: 14px;
+      box-shadow: var(--shadow);
+      z-index: 9999;
+      max-width: min(92vw, 520px);
+      text-align: center;
+    }
+
+    .toast.show {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    .mobile-only {
+      display: none;
+    }
+
+    @media (max-width: 980px) {
+      .hero-grid,
+      .cards,
+      .products,
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .menu {
+        display: none;
+      }
+
+      .mobile-only {
+        display: inline-flex;
+      }
+
+      .nav-actions {
+        margin-inline-start: auto;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .container {
+        width: min(100% - 20px, 1180px);
+      }
+
+      .nav {
+        padding: 12px 0;
+      }
+
+      .brand-text span:first-child {
+        font-size: .98rem;
+      }
+
+      .hero {
+        padding-top: 38px;
+      }
+
+      .btn {
+        width: 100%;
+      }
+
+      .hero-actions,
+      .product-actions,
+      .cta {
+        width: 100%;
+      }
+
+      .product-actions .btn {
+        width: 100%;
+      }
+
+      .user-name {
+        max-width: 95px;
+      }
+    }
+    .auth-icon{
+  width:20px;
+  height:20px;
+  object-fit:contain;
+}
+/* اسلایدر مشابه دیجی‌کالا */
+.hero-slider {
+  padding: 20px 0;
+}
+
+.slider-wrapper {
+  position: relative;
+  width: 100%;
+  height: 350px; /* ارتفاع بنر */
+  border-radius: 24px; /* گوشه‌های گرد مثل دیجی‌کالا */
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+}
+
+.slides {
+  display: flex;
+  height: 100%;
+  transition: transform 0.5s ease-in-out;
+}
+
+.slide {
+  min-width: 100%;
+  height: 100%;
+}
+
+.slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* پر کردن کامل فضا */
+}
+
+/* دکمه‌های کنترل */
+.slider-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(8px);
+  color: white;
+  border: none;
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 20px;
+  transition: 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.slider-btn:hover { background: rgba(255, 255, 255, 0.4); }
+.prev { right: 20px; } /* راست‌چین برای RTL */
+.next { left: 20px; }
+
+/* نقطه‌های پایین */
+.dots {
+  position: absolute;
+  bottom: 15px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  background: rgba(255,255,255,0.4);
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.dot.active {
+  background: #fff;
+  width: 20px;
+  border-radius: 10px;
+}
+
+/* واکنش‌گرا برای موبایل */
+@media (max-width: 768px) {
+  .slider-wrapper { height: 180px; border-radius: 12px; }
+  .slider-btn { width: 35px; height: 35px; font-size: 14px; }
+}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <nav class="nav">
+        <a class="brand" href="#top" aria-label="رسانه هنری بیرق">
+          <div class="brand-mark">
+            <i class="fa-solid fa-bolt"></i>
+          </div>
+          <div class="brand-text">
+            <span>رسانه هنری بیرق</span>
+            <span>ابزارها، لایه‌بازها و پک‌های گرافیکی</span>
+          </div>
+        </a>
+
+        <div class="menu" aria-label="منوی اصلی">
+          <a href="#top">خانه</a>
+          <a href="products.html">محصولات</a>
+          <a href="#about">درباره ما</a>
+          <a href="#contact">تماس</a>
+        </div>
+
+        <div class="nav-actions">
+          <div class="user-chip" id="userChip">
+            <div class="user-avatar"><i class="fa-solid fa-user"></i></div>
+            <div class="user-name" id="userName">کاربر</div>
+          </div>
+
+          <button class="btn btn-secondary icon-btn" id="authBtn" onclick="loginWithEitaa()">
+  <img src="103-GraFa-4.svg" alt="Eitaa" class="auth-icon">
+  <span id="authText">ورود با ایتا</span>
+</button>
+
+          <button class="btn btn-primary cart-btn icon-btn" onclick="openCart()" aria-label="سبد خرید">
+  <i class="fa-solid fa-basket-shopping"></i>
+  <span>سبد خرید</span>
+  <span class="cart-count" id="cartCount">۰</span>
+</button>
+        </div>
+      </nav>
+    </div>
+  </header>
+  <section class="hero-slider">
+  <div class="container">
+    <div class="slider-wrapper">
+      
+      <!-- بنر اصلی -->
+      <div class="slides" id="slider">
+        <div class="slide active">
+          <a href="products.html">
+            <img src="c:\Users\Mohammad Reza\Videos\Beiragh Site\32.png" alt="بنر ویژه محرم">
+          </a>
+        </div>
+        <div class="slide">
+          <a href="products.html">
+            <img src="banner2.jpg" alt="پک‌های جدید">
+          </a>
+        </div>
+      </div>
+
+      <!-- دکمه‌های قبلی و بعدی -->
+      <button class="slider-btn prev" onclick="moveSlide(-1)">❮</button>
+      <button class="slider-btn next" onclick="moveSlide(1)">❯</button>
+
+      <!-- نقطه‌های پایین (Indicators) -->
+      <div class="dots" id="dots">
+        <span class="dot active" onclick="currentSlide(0)"></span>
+        <span class="dot" onclick="currentSlide(1)"></span>
+      </div>
+
+    </div>
+  </div>
+</section>
+  <main id="top">
+    <section class="hero">
+      <div class="container">
+        <div class="hero-grid">
+          <div>
+            <div class="eyebrow">
+              <i class="fa-solid fa-shield-heart"></i>
+              خرید سریع، ورود امن با هویت ایتا
+            </div>
+
+            <h1>
+              بهترین <span>پک‌های گرافیکی</span> برای طراحان حرفه‌ای
+            </h1>
+
+            <p>
+              رسانه هنری بیرق، مرجع فروش تکی ابزارها، لایه‌بازها و پک‌های آماده برای
+              طراحان، تولیدکنندگان محتوا و مجموعه‌های تبلیغاتی است. همه‌چیز با رابط
+              کاربری مدرن و تجربه‌ای سریع در دسترس شماست.
+            </p>
+
+            <div class="hero-actions">
+              <a class="btn btn-primary" href="products.html">
+  <i class="fa-solid fa-grid-2"></i>
+  مشاهده پک‌ها
+</a>
+              <a class="btn btn-secondary" href="#contact">
+                <i class="fa-solid fa-comment-dots"></i>
+                ارتباط با ما
+              </a>
+            </div>
+          </div>
+
+          <div class="hero-card">
+            <h3>چرا رسانه هنری بیرق؟</h3>
+            <div class="hero-badges">
+              <div class="hero-badge">
+                <i class="fa-solid fa-circle-check"></i>
+                <span>کیفیت حرفه‌ای و مناسب چاپ و شبکه‌های اجتماعی</span>
+              </div>
+              <div class="hero-badge">
+                <i class="fa-solid fa-circle-check"></i>
+                <span>فروش تکی محصولات بدون اشتراک ویژه</span>
+              </div>
+              <div class="hero-badge">
+                <i class="fa-solid fa-circle-check"></i>
+                <span>سبد خرید سبک با ذخیره‌سازی در localStorage</span>
+              </div>
+              <div class="hero-badge">
+                <i class="fa-solid fa-circle-check"></i>
+                <span>ورود با هویت ایتا و بدون نیاز به پیامک</span>
+              </div>
+            </div>
+
+            <ul>
+              <li><i class="fa-solid fa-bolt"></i><span>دسترسی سریع به محصولات</span></li>
+              <li><i class="fa-solid fa-bolt"></i><span>رابط کاربری ریسپانسیو و RTL</span></li>
+              <li><i class="fa-solid fa-bolt"></i><span>مناسب مینی‌اپ و وب‌اپ</span></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="services">
+      <div class="container">
+        <div class="section-title">
+          <h2>دسته‌بندی خدمات</h2>
+          <p>مجموعه‌ای منتخب از ابزارهای گرافیکی، فایل‌های لایه‌باز و طرح‌های آماده برای کار سریع‌تر.</p>
+        </div>
+
+        <div class="cards">
+          <article class="card">
+            <i class="fa-solid fa-wand-magic-sparkles"></i>
+            <h3>پک های ابزار گرافیکی</h3>
+            <p>مجموعه ابزارها و المان‌هایی که روند طراحی را سریع‌تر و حرفه‌ای‌تر می‌کند.</p>
+          </article>
+
+          <article class="card">
+            <i class="fa-solid fa-layer-group"></i>
+            <h3>فایل‌های لایه‌باز</h3>
+            <p>فایل‌های آماده و قابل ویرایش برای صرفه‌جویی در زمان و افزایش کیفیت خروجی.</p>
+          </article>
+
+          <article class="card">
+            <i class="fa-solid fa-palette"></i>
+            <h3>طرح‌های تبلیغاتی</h3>
+            <p>قالب‌های کاربردی برای بنر، پوستر، کارت ویزیت و محتوای تبلیغاتی شبکه‌های اجتماعی.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="products">
+      <div class="container">
+        <div class="section-title">
+          <h2>محصولات منتخب</h2>
+          <p>محصولات زیر به‌صورت تکی قابل خرید هستند و به سبد خرید اضافه می‌شوند.</p>
+        </div>
+
+        <div class="products">
+          <article class="product">
+            <div class="product-image">
+              <img src="trt1 (1).jpg" alt="پک ثارالله">
+            </div>
+            <div class="product-body">
+              <div class="product-meta">
+                <span class="tag sale">تخفیف ویژه</span>
+                <span class="tag">پرفروش</span>
+              </div>
+              <h3>پک ثارالله</h3>
+              <p>مجموعه‌ای کامل برای طراحی‌های مذهبی، مناسب بنر، پوستر و محتوای مناسبتی.</p>
+              <div class="price">
+                <span class="current">298,000 تومان</span>
+                <span class="old">600,000 تومان</span>
+              </div>
+              <div class="product-actions">
+                <button class="btn btn-primary" onclick="addToCart('tharallah', 'پک ثارالله', 298000, 'trt1 (1).jpg')">
+                  <i class="fa-solid fa-cart-plus"></i>
+                  افزودن به سبد
+                </button>
+                <a class="btn btn-ghost" href="product1.html">
+                  <i class="fa-solid fa-eye"></i>
+                  جزئیات
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <article class="product">
+            <div class="product-image">
+              <div class="product-placeholder">
+                <div>
+                  <i class="fa-solid fa-rectangle-ad" style="font-size:2rem;color:#f7b500"></i>
+                  <div style="margin-top:10px">پک بنرهای تبلیغاتی</div>
+                </div>
+              </div>
+            </div>
+            <div class="product-body">
+              <div class="product-meta">
+                <span class="tag">بنر</span>
+                <span class="tag">تبلیغاتی</span>
+              </div>
+              <h3>پک بنرهای تبلیغاتی</h3>
+              <p>مناسب کسب‌وکارها، کمپین‌ها و طراحی سریع بنرهای حرفه‌ای.</p>
+              <div class="price">
+                <span class="current">249,000 تومان</span>
+              </div>
+              <div class="product-actions">
+                <button class="btn btn-primary" onclick="addToCart('ads-banner-pack', 'پک بنرهای تبلیغاتی', 249000, '')">
+                  <i class="fa-solid fa-cart-plus"></i>
+                  افزودن به سبد
+                </button>
+                <button class="btn btn-ghost" onclick="showToast('برای مشاهده جزئیات، صفحه محصول را اضافه کنید')">
+                  <i class="fa-solid fa-circle-info"></i>
+                  جزئیات
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <article class="product">
+            <div class="product-image">
+              <div class="product-placeholder">
+                <div>
+                  <i class="fa-solid fa-id-card" style="font-size:2rem;color:#7bc3ff"></i>
+                  <div style="margin-top:10px">پک کارت ویزیت حرفه‌ای</div>
+                </div>
+              </div>
+            </div>
+            <div class="product-body">
+              <div class="product-meta">
+                <span class="tag">کارت ویزیت</span>
+                <span class="tag">حرفه‌ای</span>
+              </div>
+              <h3>پک کارت ویزیت حرفه‌ای</h3>
+              <p>قالب‌های آماده و شیک برای طراحی کارت ویزیت در سبک‌های مختلف.</p>
+              <div class="price">
+                <span class="current">149,000 تومان</span>
+              </div>
+              <div class="product-actions">
+                <button class="btn btn-primary" onclick="addToCart('business-card-pack', 'پک کارت ویزیت حرفه‌ای', 149000, '')">
+                  <i class="fa-solid fa-cart-plus"></i>
+                  افزودن به سبد
+                </button>
+                <button class="btn btn-ghost" onclick="showToast('برای مشاهده جزئیات، صفحه محصول را اضافه کنید')">
+                  <i class="fa-solid fa-circle-info"></i>
+                  جزئیات
+                </button>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="container">
+        <div class="cta">
+          <div>
+            <h2>رسانه هنری بیرق، همراه خلاقیت شما</h2>
+            <p>
+              اگر به دنبال فایل‌های آماده، پک‌های کاربردی و تجربه خرید سریع هستید،
+              اینجا نقطه شروع شماست. ورود با ایتا هم برای کاربران ساده و هم برای مدیریت سفارش‌ها امن‌تر است.
+            </p>
+          </div>
+          <a class="btn btn-primary" href="#contact">
+            <i class="fa-solid fa-paper-plane"></i>
+            شروع همکاری
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="container">
+        <div class="section-title">
+          <h2>تماس با ما</h2>
+          <p>اگر سوالی داری یا می‌خواهی سفارش بدهی، اینجا با ما در ارتباط باش.</p>
+        </div>
+
+        <div class="contact-grid">
+          <div class="card contact-box">
+            <h3 style="margin-top:0">راه‌های ارتباطی</h3>
+            <div class="contact-list">
+              <div class="contact-item">
+                <i class="fa-solid fa-message"></i>
+                <span>پشتیبانی ایتا / پیام مستقیم</span>
+              </div>
+              <div class="contact-item">
+                <i class="fa-solid fa-clock"></i>
+                <span>پاسخ‌گویی در ساعات کاری</span>
+              </div>
+              <div class="contact-item">
+                <i class="fa-solid fa-badge-check"></i>
+                <span>تحویل دیجیتال سریع پس از ثبت سفارش</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="card contact-box">
+            <h3 style="margin-top:0">نکته برای ورود</h3>
+            <p style="margin-bottom:0; color: var(--muted)">
+              وقتی این صفحه داخل مینی‌اپ ایتا باز شود، دکمه «ورود با ایتا» داده هویتی را به سرور می‌فرستد
+              و پس از اعتبارسنجی، حساب کاربر ساخته یا پیدا می‌شود.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div>© <span id="year"></span> رسانه هنری بیرق</div>
+        <div>طراحی مینیمال، RTL، ریسپانسیو و مناسب مینی‌اپ</div>
+      </div>
+    </div>
+  </footer>
+
+  <div class="toast" id="toast"></div>
+
+  <script>
+    const CART_KEY = "cart";
+    const TOKEN_KEY = "beiraq_token";
+    const USER_KEY = "beiraq_current_user";
+
+    let cart = loadCart();
+    let authToken = localStorage.getItem(TOKEN_KEY) || "";
+    let currentUser = safeJsonParse(localStorage.getItem(USER_KEY));
+
+    const faNumber = new Intl.NumberFormat("fa-IR");
+
+    function safeJsonParse(value) {
+      if (!value) return null;
+      try {
+        return JSON.parse(value);
+      } catch {
+        return null;
+      }
+    }
+
+    function loadCart() {
+      const parsed = safeJsonParse(localStorage.getItem(CART_KEY));
+      return Array.isArray(parsed) ? parsed : [];
+    }
+
+    function saveCart() {
+      localStorage.setItem(CART_KEY, JSON.stringify(cart));
+    }
+
+    function formatMoney(amount) {
+      return `${faNumber.format(amount)} تومان`;
+    }
+
+    function showToast(message) {
+      const toast = document.getElementById("toast");
+      if (!toast) {
+        alert(message);
+        return;
+      }
+      toast.textContent = message;
+      toast.classList.add("show");
+      clearTimeout(window.toastTimer);
+      window.toastTimer = setTimeout(() => {
+        toast.classList.remove("show");
+      }, 2400);
+    }
+
+    function updateCartCount() {
+      const count = cart.reduce((sum, item) => sum + Number(item.qty || 0), 0);
+      document.querySelectorAll(".cart-count").forEach(el => {
+        el.textContent = faNumber.format(count);
+      });
+    }
+
+    function addToCart(id, name, price, image) {
+      const index = cart.findIndex(item => item.id === id);
+
+      if (index >= 0) {
+        cart[index].qty += 1;
+      } else {
+        cart.push({
+          id,
+          name,
+          price,
+          image: image || "",
+          qty: 1
+        });
+      }
+
+      saveCart();
+      updateCartCount();
+      showToast(`${name} به سبد خرید اضافه شد`);
+    }
+
+    function renderAuthState() {
+      const authBtn = document.getElementById("authBtn");
+      const userChip = document.getElementById("userChip");
+      const userName = document.getElementById("userName");
+
+      if (currentUser && authToken) {
+        userChip.style.display = "inline-flex";
+        userName.textContent = currentUser.first_name || currentUser.name || "کاربر";
+        authBtn.innerHTML = '<i class="fa-solid fa-right-from-bracket"></i><span>خروج</span>';
+        authBtn.className = "btn btn-secondary icon-btn";
+        authBtn.onclick = logoutUser;
+      } else {
+        userChip.style.display = "none";
+        authBtn.innerHTML = '<i class="fa-brands fa-telegram"></i><span>ورود با ایتا</span>';
+        authBtn.className = "btn btn-secondary icon-btn";
+        authBtn.onclick = loginWithEitaa;
+      }
+    }
+
+    function logoutUser() {
+      authToken = "";
+      currentUser = null;
+      localStorage.removeItem(TOKEN_KEY);
+      localStorage.removeItem(USER_KEY);
+      renderAuthState();
+      showToast("خارج شدی");
+    }
+
+    function getEitaaInitData() {
+      if (window.Eitaa && window.Eitaa.WebApp && window.Eitaa.WebApp.initData) {
+        return window.Eitaa.WebApp.initData;
+      }
+
+      const params = new URLSearchParams(window.location.search);
+      const initData = params.get("initData");
+      if (initData) return initData;
+
+      const fallback = localStorage.getItem("eitaa_init_data");
+      return fallback || "";
+    }
+
+    async function loginWithEitaa() {
+  try {
+    // اول تلاش برای ورود خودکار از داده‌های ایتا
+    if (window.Eitaa && window.Eitaa.WebApp && window.Eitaa.WebApp.initDataUnsafe && window.Eitaa.WebApp.initDataUnsafe.user) {
+      const u = window.Eitaa.WebApp.initDataUnsafe.user;
+
+      currentUser = {
+        id: u.id,
+        first_name: u.first_name || "",
+        last_name: u.last_name || "",
+        username: u.username || "",
+        name: `${u.first_name || ""} ${u.last_name || ""}`.trim()
+      };
+
+      authToken = "local-eitaa-session";
+      localStorage.setItem("beiraq_current_user", JSON.stringify(currentUser));
+      localStorage.setItem("beiraq_token", authToken);
+
+      renderAuthState();
+      showToast("ورود با ایتا انجام شد");
+      return;
+    }
+
+    // اگر داخل ایتا نبود
+    showToast("برای ورود واقعی، صفحه را داخل مینی‌اپ ایتا باز کنید.");
+  } catch (error) {
+    console.error(error);
+    showToast("خطا در ورود");
+  }
+}
+
+
+    async function fetchMyProfile() {
+      if (!authToken) return;
+
+      try {
+        const res = await fetch("/api/me", {
+          headers: {
+            Authorization: `Bearer ${authToken}`
+          }
+        });
+
+        if (!res.ok) {
+          return;
+        }
+
+        const data = await res.json();
+        currentUser = data.user;
+        localStorage.setItem(USER_KEY, JSON.stringify(currentUser));
+        renderAuthState();
+      } catch (error) {
+        console.error(error);
+      }
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+  document.getElementById("year").textContent = new Date().getFullYear();
+  updateCartCount();
+  autoLoginFromEitaa();   // ✅ اضافه شد
+  renderAuthState();
+});
+
+
+    window.addEventListener("storage", (event) => {
+      if (event.key === CART_KEY) {
+        cart = loadCart();
+        updateCartCount();
+      }
+      if (event.key === TOKEN_KEY || event.key === USER_KEY) {
+        authToken = localStorage.getItem(TOKEN_KEY) || "";
+        currentUser = safeJsonParse(localStorage.getItem(USER_KEY));
+        renderAuthState();
+      }
+    });
+    // تابع برای گرفتن اطلاعات کاربر از ایتا
+function getEitaaUserData() {
+    // اگر مینی اپ داخل ایتا باز شده باشد
+    if (window.Eitaa && window.Eitaa.WebApp && window.Eitaa.WebApp.initDataUnsafe) {
+        const user = window.Eitaa.WebApp.initDataUnsafe.user;
+        if (user) {
+            return {
+                id: user.id,
+                name: user.first_name + (user.last_name ? " " + user.last_name : ""),
+                username: user.username || "کاربر ایتا"
+            };
+        }
+    }
+    
+    // حالت تستی (اگر در مرورگر عادی باز شده باشد)
+    return {
+        id: "12345",
+        name: "کاربر تستی بیرق",
+        username: "test_user"
+    };
+}
+
+// تابع ورود
+function loginWithEitaa() {
+    const userData = getEitaaUserData();
+    
+    // ذخیره در دیتابیس محلی مرورگر
+    localStorage.setItem('beiraq_user', JSON.stringify(userData));
+    localStorage.setItem('isLoggedIn', 'true');
+    
+    alert(`خوش آمدید ${userData.name}!`);
+    location.reload(); // رفرش صفحه برای اعمال تغییرات
+}
+function autoLoginFromEitaa() {
+  try {
+    let user = null;
+    let token = localStorage.getItem("beiraq_token") || "";
+
+    // حالت 1: داخل خود WebApp ایتا
+    if (window.Eitaa && window.Eitaa.WebApp && window.Eitaa.WebApp.initDataUnsafe) {
+      const unsafeUser = window.Eitaa.WebApp.initDataUnsafe.user;
+      if (unsafeUser) {
+        user = {
+          id: unsafeUser.id,
+          first_name: unsafeUser.first_name || "",
+          last_name: unsafeUser.last_name || "",
+          username: unsafeUser.username || "",
+          name: `${unsafeUser.first_name || ""} ${unsafeUser.last_name || ""}`.trim()
+        };
+      }
+    }
+
+    // حالت 2: از localStorage قبلی
+    if (!user) {
+      const savedUser = localStorage.getItem("beiraq_current_user");
+      if (savedUser) {
+        user = JSON.parse(savedUser);
+      }
+    }
+
+    // اگر کاربر پیدا شد، لاگین انجام شود
+    if (user) {
+      localStorage.setItem("beiraq_current_user", JSON.stringify(user));
+      if (!token) {
+        token = "local-eitaa-session";
+        localStorage.setItem("beiraq_token", token);
+      }
+
+      currentUser = user;
+      authToken = token;
+      renderAuthState();
+      showToast("خوش آمدید " + (user.first_name || user.name || "کاربر"));
+    }
+  } catch (error) {
+    console.error("autoLoginFromEitaa error:", error);
+  }
+}
+function autoLoginFromEitaa() {
+  if (
+    window.Eitaa &&
+    window.Eitaa.WebApp &&
+    window.Eitaa.WebApp.initDataUnsafe &&
+    window.Eitaa.WebApp.initDataUnsafe.user
+  ) {
+    const u = window.Eitaa.WebApp.initDataUnsafe.user;
+
+    const user = {
+      id: u.id,
+      first_name: u.first_name || "",
+      last_name: u.last_name || "",
+      username: u.username || "",
+      name: (u.first_name || "") + " " + (u.last_name || "")
+    };
+
+    localStorage.setItem("beiraq_current_user", JSON.stringify(user));
+    localStorage.setItem("beiraq_token", "eitaa_session");
+
+    currentUser = user;
+    authToken = "eitaa_session";
+
+    renderAuthState();
+  }
+}
+function openCart(){
+
+  const cached = localStorage.getItem("eitaa_user");
+  const initData = window.Eitaa?.WebApp?.initDataUnsafe;
+
+  const user = initData?.user || (cached ? JSON.parse(cached) : null);
+
+  if(!user){
+
+    alert("برای مشاهده سبد خرید ابتدا باید با ایتا وارد شوید");
+
+    return;
+  }
+
+  window.location.href = "cart.html";
+}
+let currentIdx = 0;
+const slides = document.querySelectorAll('.slide');
+const dots = document.querySelectorAll('.dot');
+
+function updateSlider() {
+  const slider = document.getElementById('slider');
+  slider.style.transform = `translateX(${currentIdx * 100}%)`;
+  
+  // آپدیت وضعیت نقطه‌ها
+  dots.forEach((dot, index) => {
+    dot.classList.toggle('active', index === currentIdx);
+  });
+}
+
+function moveSlide(direction) {
+  currentIdx += direction;
+  if (currentIdx >= slides.length) currentIdx = 0;
+  if (currentIdx < 0) currentIdx = slides.length - 1;
+  updateSlider();
+}
+
+function currentSlide(index) {
+  currentIdx = index;
+  updateSlider();
+}
+
+// حرکت اتوماتیک هر ۵ ثانیه
+setInterval(() => {
+  moveSlide(1);
+}, 5000);
+function setAuthUI(user) {
+    const authBtn = document.getElementById("authBtn");
+    const authText = document.getElementById("authText");
+
+    if (user) {
+        authText.textContent = user.first_name || "حساب من";
+        // با کلیک روی دکمه وقتی لاگین است، به صفحه پروفایل برود
+        authBtn.onclick = () => location.href = 'profile.html';
+    } else {
+        authText.textContent = "ورود با ایتا";
+        authBtn.onclick = loginWithEitaa;
+    }
+}
+  </script>
+</body>
+</html>
